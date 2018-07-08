@@ -29,7 +29,10 @@ setup(
     author='Stefan Hoelzl',
     author_email='stefan.hoelzl@posteo.de',
     license='MIT',
-    packages=['cico'],
+    packages=[
+        'cico',
+        'cico.results'
+    ],
     install_requires=[
         'anybadge==1.1.1',
         'GitPython==2.1.10',
