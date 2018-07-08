@@ -9,10 +9,12 @@ from cico.results import Directory, File, Badge
 TravisCI(
     repo = GitHub(USERNAME, REPO_NAME, TOKEN),
     branch = "ci-results",
-    no_ci_commit = True,
+    no_ci_push = True,  # performs a push even if not run in a CI environment
     results = [
-        Files("testresults.tap", "covhtml"),
-        Badge(),
+        Files("testresults.tap", destination="tap"),
+        Directory("covhtml", destination="coverage"),
+        Badge("badges/mybadge", png=True, label="My Badge", value=96,
+              **anybadge_arguments),  # https://github.com/jongracecox/anybadge
     ]
 ).commit()
 ```
@@ -21,5 +23,4 @@ TravisCI(
 ```yaml
 after_script:
   - python cico.py
-
 ```
