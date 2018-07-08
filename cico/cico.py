@@ -3,7 +3,6 @@ from .result_archiver import ResultArchiver
 
 
 class TravisCI(ResultArchiver):
-    @property
     def as_ci(self):
         return "TRAVIS_CI" in os.environ
 
