@@ -11,7 +11,7 @@ script: make ci
 jobs:
   include:
     - stage: PyPI Deployment
-      if: branch = releases AND tag = true
+      if: branch = releases AND tag IS present
       python: "3.6"
       script: make release.build
       deploy:
