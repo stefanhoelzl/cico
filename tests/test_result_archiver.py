@@ -31,14 +31,14 @@ def test_commit_ci(td_mock, repo_mock, monkeypatch, tmpdir):
     ]).commit()
     repo_mock.assert_has_calls([
         mock.call("URL"),
-        mock.call().clone(Path(tmpdir), branch="results"),
-        mock.call().rmdir(Path(tmpdir / "feature")),
+        mock.call().clone(Path(str(tmpdir)), branch="results"),
+        mock.call().rmdir(Path(str(tmpdir)) / "feature"),
         mock.call().add((Path("file0"),)),
         mock.call().add((Path("file1"), Path("file2"))),
         mock.call().commit("build #99 on branch 'feature'"),
         mock.call().push()
     ])
-    assert (Path(tmpdir) / "feature").is_dir()
+    assert (Path(str(tmpdir)) / "feature").is_dir()
 
 
 @mock.patch("cico.result_archiver.GitRepo")
@@ -54,14 +54,14 @@ def test_commit_ci_custom_message(td_mock, repo_mock, monkeypatch, tmpdir):
     ]).commit("{branch} {build}")
     repo_mock.assert_has_calls([
         mock.call("URL"),
-        mock.call().clone(Path(tmpdir), branch="results"),
-        mock.call().rmdir(Path(tmpdir / "feature")),
+        mock.call().clone(Path(str(tmpdir)), branch="results"),
+        mock.call().rmdir(Path(str(tmpdir)) / "feature"),
         mock.call().add((Path("file0"),)),
         mock.call().add((Path("file1"), Path("file2"))),
         mock.call().commit("feature 99"),
         mock.call().push()
     ])
-    assert (Path(tmpdir) / "feature").is_dir()
+    assert (Path(str(tmpdir)) / "feature").is_dir()
 
 
 @mock.patch("cico.result_archiver.GitRepo")
@@ -76,12 +76,12 @@ def test_commit_no_ci(td_mock, repo_mock, monkeypatch, tmpdir):
     url_mock.set_authentication.assert_called_once_with(system=True)
     repo_mock.assert_has_calls([
         mock.call(url_mock),
-        mock.call().clone(Path(tmpdir), branch="results"),
-        mock.call().rmdir(Path(tmpdir / "NO_CI")),
+        mock.call().clone(Path(str(tmpdir)), branch="results"),
+        mock.call().rmdir(Path(str(tmpdir)) / "NO_CI"),
         mock.call().add((Path("file0"),)),
         mock.call().commit("build #NO_CI on branch 'NO_CI'"),
     ])
-    assert (Path(tmpdir) / "NO_CI").is_dir()
+    assert (Path(str(tmpdir)) / "NO_CI").is_dir()
 
 
 
@@ -97,13 +97,13 @@ def test_commit_no_ci_push_anyways(td_mock, repo_mock, monkeypatch, tmpdir):
     url_mock.set_authentication.assert_called_once_with(system=True)
     repo_mock.assert_has_calls([
         mock.call(url_mock),
-        mock.call().clone(Path(tmpdir), branch="results"),
-        mock.call().rmdir(Path(tmpdir / "NO_CI")),
+        mock.call().clone(Path(str(tmpdir)), branch="results"),
+        mock.call().rmdir(Path(str(tmpdir)) / "NO_CI"),
         mock.call().add((Path("file0"),)),
         mock.call().commit("build #NO_CI on branch 'NO_CI'"),
         mock.call().push()
     ])
-    assert (Path(tmpdir) / "NO_CI").is_dir()
+    assert (Path(str(tmpdir)) / "NO_CI").is_dir()
 
 
 @mock.patch("cico.result_archiver.GitRepo")

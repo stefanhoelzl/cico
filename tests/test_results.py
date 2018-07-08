@@ -12,7 +12,7 @@ class TestResult:
             assert returns == Result().to(dest)
 
     def test_ensure_dest(self, tmpdir):
-        dest = Path(tmpdir) / "dest"
+        dest = Path(str(tmpdir)) / "dest"
         with mock.patch.object(Result, "_to", return_value=[]):
             Result().to(dest)
         assert dest.is_dir()
