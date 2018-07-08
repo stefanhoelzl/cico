@@ -38,5 +38,4 @@ class File(Copy):
 
 class Directory(Copy):
     def _copy_item(self, item, dest):
-        dest = dest / item.name
-        copy_tree(str(item), str(dest))
+        copy_tree(str(item), str(dest / item.name))
