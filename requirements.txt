@@ -5,6 +5,7 @@ CairoSVG==2.1.3
 
 # packaging
 twine==1.11.0
+wheel
 
 # testing
 pytest==3.6.2

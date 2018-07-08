@@ -1,2 +1,6 @@
 .venv
 .idea
+build
+dist
+cico.egg-info
+.pytest_cache
