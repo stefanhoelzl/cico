@@ -2,8 +2,15 @@
 default: all;
 
 .PHONY: tests
-tests:
+tests: tests.unit tests.roundtrip
+
+.PHONY: tests.unit
+tests.unit:
 	PYTHONPATH=. pytest tests
+
+.PHONY: tests.roundtrip
+tests.roundtrip:
+	PYTHONPATH=. python tests/roundtrip.py
 
 .PHONY: release.build
 release.build:
