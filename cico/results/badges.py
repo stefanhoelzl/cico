@@ -5,7 +5,7 @@ from .results import Result
 
 
 class Badge(Result):
-    def __init__(self, filename, png=True, **any_badge_kwargs):
+    def __init__(self, filename, png=False, **any_badge_kwargs):
         self.badge = AnyBadge(**any_badge_kwargs)
         self.filename = filename
         self.png = png

@@ -4,10 +4,8 @@ from pathlib import Path
 
 
 class Result:
-    _dest = Path(".")
-
     def to(self, dest):
-        dest = dest / self._dest
+        dest = dest
         dest.mkdir(exist_ok=True)
         return self._to(dest)
 
@@ -19,6 +17,9 @@ class Copy(Result):
     def __init__(self, *items, destination=""):
         self._items = [Path(item) for item in items]
         self._dest = destination
+
+    def to(self, dest):
+        return super().to(dest / self._dest)
 
     def _copy_item(self, item, dest):
         raise NotImplementedError()
