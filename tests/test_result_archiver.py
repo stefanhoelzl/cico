@@ -21,7 +21,7 @@ def create_result_archiver(repo=None, branch="branch", results=()):
 @mock.patch("cico.result_archiver.GitRepo")
 @mock.patch("cico.result_archiver.TemporaryDirectory.__enter__")
 def test_commit_ci(td_mock, repo_mock, monkeypatch, tmpdir):
-    td_mock.return_value = tmpdir
+    td_mock.return_value = Path(str(tmpdir))
     monkeypatch.setenv("CI", "CI")
     ResultArchiver._get_build_number = mock.MagicMock(return_value="99")
     ResultArchiver._get_branch_name = mock.MagicMock(return_value="feature")
@@ -44,7 +44,7 @@ def test_commit_ci(td_mock, repo_mock, monkeypatch, tmpdir):
 @mock.patch("cico.result_archiver.GitRepo")
 @mock.patch("cico.result_archiver.TemporaryDirectory.__enter__")
 def test_commit_ci_custom_message(td_mock, repo_mock, monkeypatch, tmpdir):
-    td_mock.return_value = tmpdir
+    td_mock.return_value = Path(str(tmpdir))
     monkeypatch.setenv("CI", "CI")
     ResultArchiver._get_build_number = mock.MagicMock(return_value="99")
     ResultArchiver._get_branch_name = mock.MagicMock(return_value="feature")
@@ -67,7 +67,7 @@ def test_commit_ci_custom_message(td_mock, repo_mock, monkeypatch, tmpdir):
 @mock.patch("cico.result_archiver.GitRepo")
 @mock.patch("cico.result_archiver.TemporaryDirectory.__enter__")
 def test_commit_no_ci(td_mock, repo_mock, monkeypatch, tmpdir):
-    td_mock.return_value = tmpdir
+    td_mock.return_value = Path(str(tmpdir))
     monkeypatch.delenv("CI",raising=False)
     url_mock = mock.MagicMock()
     ResultArchiver(url_mock, "results", [
@@ -88,7 +88,7 @@ def test_commit_no_ci(td_mock, repo_mock, monkeypatch, tmpdir):
 @mock.patch("cico.result_archiver.GitRepo")
 @mock.patch("cico.result_archiver.TemporaryDirectory.__enter__")
 def test_commit_no_ci_push_anyways(td_mock, repo_mock, monkeypatch, tmpdir):
-    td_mock.return_value = tmpdir
+    td_mock.return_value = Path(str(tmpdir))
     monkeypatch.delenv("CI",raising=False)
     url_mock = mock.MagicMock()
     ResultArchiver(url_mock, "results", [
@@ -109,7 +109,7 @@ def test_commit_no_ci_push_anyways(td_mock, repo_mock, monkeypatch, tmpdir):
 @mock.patch("cico.result_archiver.GitRepo")
 @mock.patch("cico.result_archiver.TemporaryDirectory.__enter__")
 def test_commit_result(td_mock, repo_mock, monkeypatch, tmpdir):
-    td_mock.return_value = tmpdir
+    td_mock.return_value = Path(str(tmpdir))
     monkeypatch.setenv("CI", "CI")
     ResultArchiver._get_build_number = mock.MagicMock(return_value="99")
     ResultArchiver._get_branch_name = mock.MagicMock(return_value="feature")

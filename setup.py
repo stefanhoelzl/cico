@@ -18,6 +18,8 @@ setup(
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
+        'Operating System :: MacOS :: MacOS X',
+        'Operating System :: POSIX :: Linux',
         'Topic :: Software Development',
         'Topic :: Software Development :: Version Control :: Git'
     ],
