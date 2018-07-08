@@ -1,11 +1,10 @@
 language: python
 os:
   - linux
-  - osx
+#   - osx not possible due to TravisCI bug
 python:
   - "3.6"
   - "3.5"
-  - "3.4"
 install:
   - make env.install
 script:
