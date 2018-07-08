@@ -3,7 +3,7 @@ from pathlib import Path
 from contextlib import contextmanager
 from tempfile import TemporaryDirectory
 
-from repo import GitRepo
+from .repo import GitRepo
 
 
 class ResultArchiver:
