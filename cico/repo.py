@@ -15,7 +15,9 @@ class GitRepo:
 
     def rmdir(self, dir_):
         if dir_.is_dir():
-            self.repo.index.remove([str(dir_)], working_tree=True)
+            self.repo.index.remove([str(dir_)],
+                                   working_tree=True,
+                                   r=True)  # delete recursively
 
     def add(self, files):
         self.repo.index.add([str(f.relative_to(self.base))
