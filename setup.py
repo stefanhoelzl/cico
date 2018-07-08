@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='cico',
-    version='0.1.1',
+    version='0.1.2',
     description='stores results created during a CI in a special git branch',
     long_description=readme(),
     long_description_content_type="text/markdown",
