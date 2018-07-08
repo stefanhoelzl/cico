@@ -16,7 +16,7 @@ def dest(tmpdir):
 @pytest.fixture
 def tmpdir(tmpdir):
     cwd = os.getcwd()
-    os.chdir(tmpdir)
+    os.chdir(str(tmpdir))
     yield tmpdir
     os.chdir(cwd)
 
