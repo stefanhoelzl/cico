@@ -10,7 +10,7 @@ from cico.results.results import Result, Copy
 
 @pytest.fixture
 def dest(tmpdir):
-    return Path(tmpdir.mkdir("dest"))
+    return Path(str(tmpdir.mkdir("dest")))
 
 
 @pytest.fixture
