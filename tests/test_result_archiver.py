@@ -104,3 +104,17 @@ def test_commit_no_ci_push_anyways(td_mock, repo_mock, monkeypatch, tmpdir):
         mock.call().push()
     ])
     assert (Path(tmpdir) / "NO_CI").is_dir()
+
+
+@mock.patch("cico.result_archiver.GitRepo")
+@mock.patch("cico.result_archiver.TemporaryDirectory.__enter__")
+def test_commit_result(td_mock, repo_mock, monkeypatch, tmpdir):
+    td_mock.return_value = tmpdir
+    monkeypatch.setenv("CI", "CI")
+    ResultArchiver._get_build_number = mock.MagicMock(return_value="99")
+    ResultArchiver._get_branch_name = mock.MagicMock(return_value="feature")
+    commit_result = ResultArchiver("URL", "results", [
+        ResultMock(Path("file0")),
+        ResultMock(Path("file1"), Path("file2")),
+    ]).commit()
+    assert "feature" == commit_result["branch"]

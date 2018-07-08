@@ -38,6 +38,9 @@ class ResultArchiver:
             message = "build #{build} on branch '{branch}'"
         with self._commit_to_repo(message, no_ci_push):
             self._add_results_files_to_index()
+        return {
+            "branch": self._branch_name
+        }
 
     def _add_results_files_to_index(self):
         for result in self.results:
