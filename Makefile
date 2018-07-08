@@ -18,7 +18,7 @@ env.install:
 	python -m pip install -r requirements.txt
 
 .PHONY: all
-all: tests docs.build release.build
+all: tests release.build
 
 .PHONY: ci
 ci: all
