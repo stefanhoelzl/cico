@@ -34,7 +34,7 @@ class Copy(Result):
 
 class File(Copy):
     def _copy_item(self, item, dest):
-        shutil.copy2(item, dest)
+        shutil.copy2(str(item), str(dest))
 
 
 class Directory(Copy):
