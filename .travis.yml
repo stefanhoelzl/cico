@@ -5,3 +5,11 @@ install:
   - make env.install
 script:
   - make ci
+deploy:
+  provider: pypi
+  user: stefanhoelzl
+  password:
+    secure: Da146GDDE1rGywVg2w9uKERXmvZSAUSX8z6dz8Yn5kd/pbFxwr6iyaWS4KSKqxAX0ghnmjTRsI/kCeakBc+mSFH8P2zj1kVa+MGpyZyQxSbm1oYh2Jc4kf3SZ+Wu0JkLAdQI29kRAuSPILcmASzs3fq3M97DjGr1oCtKasSgvqipQiO3Ap4y82Ncl42uFsF/ZshnaCvLjTbS2p/9qUlGBrZ6GaxnJdOFpFNIGaw9ioqXqvizTsaN6cEm782VE/3TMWIqknDGGN+MoQK+nOBB8joN9GJqlUOLpO3mkA1A2LS+Vs6+QXhMADtxLDYEflcyjZCeICkEr/myG1n3rujkIHfQKAE1YStqyYlo/+ZDyiT9g80NPOdTjVdFv2IcvTVm+UVv2yAOhpo/J8vtvegBnd+uppx78hONkAPvsjH/5Hv2+x6B9Bbex1xRJmvFBD+R61wXk9rp6cW46Yf3qvLes0wLktU1mjbcPRka2r+2+rBvGAnJ6beS6d4E3xGJ7cq/pMRu4EeL2YQiYppkcUDDudh3HiBf/HW+Ymr+MmEmmjyy48KfiPowIqGvVC9V5L9T5yYjiOcnxRIBUSDaNUYfS4mA0pRFkRQJTIaJ+kjA0b2h4E9JsjmU4Mz+f5oZH4Ex0cht+0yX1YSPD8/hqK7CTqjw2envfGgGChikBqir+OA=
+  server: https://test.pypi.org/legacy/
+  on:
+    branch: feat-deploy
