@@ -1,7 +1,8 @@
 # cico
 
 [![Build Status](https://travis-ci.org/stefanhoelzl/cico.svg?branch=master)](https://travis-ci.org/stefanhoelzl/cico)
-
+[![PyPI](https://img.shields.io/pypi/v/cico.svg)](https://pypi.org/project/cico/)
+[![License](https://img.shields.io/pypi/l/cico.svg)](LICENSE)
 
 cico stores results created during a CI in a special git branch
 
