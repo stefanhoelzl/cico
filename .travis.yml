@@ -7,10 +7,11 @@ python:
   - "3.5"
 install:
   - make env.install
+script: make ci
 jobs:
   include:
-    - script: make ci
-    - stage: pypi
+    - stage: PyPI Deployment
+      python: "3.6"
       script: release.build
       deploy:
         provider: pypi
