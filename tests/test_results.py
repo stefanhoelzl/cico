@@ -83,4 +83,3 @@ class TestBadge:
     def test_create_png(self, dest):
         Badge("badge", label="MyBadge", value="0", png=True).to(dest)
         assert (dest / "badge.png").is_file()
-
