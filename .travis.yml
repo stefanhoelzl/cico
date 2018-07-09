@@ -6,6 +6,7 @@ python:
   - "3.5"
 install:
   - make env.install
+script: echo "TEST"
 jobs:
   include:
     - stage: Deployment
@@ -13,6 +14,6 @@ jobs:
       script: make release.build
       deploy:
         provider: script
-        script: echo "DONE"
+        script: echo "DEPLOY"
         on:
           if: tag =~ /v\d+.\d+.\d+/
