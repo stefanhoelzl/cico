@@ -23,8 +23,14 @@ class TestCopy:
         with mock.patch.object(Copy, "_copy_item") as copy_item_mock:
             Copy("file0").to(dest)
         copy_item_mock.assert_has_calls([
-            mock.call(Path("file0"), dest),
+            mock.call(Path("file0"), dest, "file0"),
         ])
+
+    def test_rename(self, dest):
+        with mock.patch.object(Copy, "_copy_item"):
+            copied = Copy("src/file0",
+                          destination="dest", rename="renamed").to(dest)
+            assert [dest / "dest/renamed"] == copied
 
     def test_return_correct_path(self, dest):
         with mock.patch.object(Copy, "_copy_item"):
@@ -43,6 +49,11 @@ class TestFile:
         File("file", destination="sub").to(dest)
         assert (dest / "sub/file").is_file()
 
+    def test_rename(self, tmpdir, dest):
+        tmpdir.join("file").ensure()
+        File("file", destination="sub", rename="renamed").to(dest)
+        assert (dest / "sub/renamed").is_file()
+
 
 class TestDirecotry:
     def test_single_directory_with_file(self, tmpdir, dest):
@@ -56,6 +67,12 @@ class TestDirecotry:
         Directory("dir", destination="sub").to(dest)
         assert (dest / "sub" / "dir").is_dir()
         assert (dest / "sub" / "dir" / "file").is_file()
+
+    def test_rename(self, tmpdir, dest):
+        tmpdir.join("dir").join("file").ensure()
+        Directory("dir", destination="sub", rename="renamed").to(dest)
+        assert (dest / "sub" / "renamed").is_dir()
+        assert (dest / "sub" / "renamed" / "file").is_file()
 
 
 class TestBadge:

@@ -20,8 +20,13 @@ TravisCI(
     results = [
         # Deploy file 'testresults.tap' into folder 'tap' (destination is optional)
         File("testresults.tap", destination="tap"),
+
+        # Deploy file 'wrong_name.tap' as 'correct_name.tap' (rename is optional)
+        File("wrong_name.tap", rename="correct_name.tap"),
+
         # Deploy directory 'covhtml' into folder 'coverage' (desitnation is optional)
         Directory("covhtml", destination="coverage"),
+
         # Create a Badge with the label "My Badge" and value "96" as .svg and .png (png is optional)
         Badge("badges/mybadge", png=True, label="My Badge", value=96,
               **anybadge_arguments),  # https://github.com/jongracecox/anybadge
@@ -33,13 +38,13 @@ TravisCI(
 )
 ```
 
-`.travis.yml` with `after_script`
+`.travis.yml` with `after_script` section
 ```yaml
 after_script:
   - python deploy.py
 ```
 
-`.travis.yml` with `deploy`
+`.travis.yml` with `deploy` section
 ```yaml
 deploy:
   provider: script
