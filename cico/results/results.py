@@ -14,8 +14,8 @@ class Result:
 
 
 class Copy(Result):
-    def __init__(self, *items, destination=""):
-        self._items = [Path(item) for item in items]
+    def __init__(self, item, destination=""):
+        self._item = Path(item)
         self._dest = destination
 
     def to(self, dest):
@@ -25,11 +25,8 @@ class Copy(Result):
         raise NotImplementedError()
 
     def _to(self, dest):
-        copied = []
-        for item in self._items:
-            self._copy_item(item, dest)
-            copied.append(dest / item.name)
-        return copied
+        self._copy_item(self._item, dest)
+        return [dest / self._item.name]
 
 
 class File(Copy):

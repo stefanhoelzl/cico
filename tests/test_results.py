@@ -19,12 +19,11 @@ class TestResult:
 
 
 class TestCopy:
-    def test_copy_all_items(self, dest):
+    def test_copy_item(self, dest):
         with mock.patch.object(Copy, "_copy_item") as copy_item_mock:
-            Copy("file0", "file1").to(dest)
+            Copy("file0").to(dest)
         copy_item_mock.assert_has_calls([
             mock.call(Path("file0"), dest),
-            mock.call(Path("file1"), dest)
         ])
 
     def test_return_correct_path(self, dest):
@@ -39,19 +38,10 @@ class TestFile:
         File("file").to(dest)
         assert (dest / "file").is_file()
 
-    def test_multiple_files(self, tmpdir, dest):
-        tmpdir.join("file").ensure()
-        tmpdir.join("another_file").ensure()
-        File("file", "another_file").to(dest)
-        assert (dest / "file").is_file()
-        assert (dest / "another_file").is_file()
-
     def test_with_destination(self, tmpdir, dest):
         tmpdir.join("file").ensure()
-        tmpdir.join("another_file").ensure()
-        File("file", "another_file", destination="sub").to(dest)
+        File("file", destination="sub").to(dest)
         assert (dest / "sub/file").is_file()
-        assert (dest / "sub/another_file").is_file()
 
 
 class TestDirecotry:
