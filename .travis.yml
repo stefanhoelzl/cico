@@ -17,3 +17,4 @@ jobs:
         script: echo "DEPLOY"
         on:
           if: tag =~ /v\d+.\d+.\d+/
+          all_branches: true
