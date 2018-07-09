@@ -14,7 +14,7 @@ For each tested branch a directory in the results branch gets created.
   * can be in a different repository than the tested branch
 
 ## Installation
-````bash
+```bash
 $ pip install cico
 ```
 
