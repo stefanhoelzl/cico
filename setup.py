@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='cico',
-    version='0.1.7',
+    version='0.1.8',
     description='deploy CI results to git',
     long_description=readme(),
     long_description_content_type="text/markdown",
