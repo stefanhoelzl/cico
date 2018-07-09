@@ -1,7 +1,6 @@
 language: python
 os:
   - linux
-#   - osx not possible due to TravisCI bug
 python:
   - "3.6"
   - "3.5"
@@ -11,7 +10,7 @@ script: make ci
 jobs:
   include:
     - stage: PyPI Deployment
-      if: branch = releases AND tag = true
+      if: tag =~ /v\d+.\d+.\d+/
       python: "3.6"
       script: make release.build
       deploy:
