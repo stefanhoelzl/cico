@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='cico',
-    version='0.1.0',
+    version='0.1.3',
     description='stores results created during a CI in a special git branch',
     long_description=readme(),
     long_description_content_type="text/markdown",
@@ -29,7 +29,10 @@ setup(
     author='Stefan Hoelzl',
     author_email='stefan.hoelzl@posteo.de',
     license='MIT',
-    packages=['cico'],
+    packages=[
+        'cico',
+        'cico.results'
+    ],
     install_requires=[
         'anybadge==1.1.1',
         'GitPython==2.1.10',
