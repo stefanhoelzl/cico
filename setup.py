@@ -36,7 +36,7 @@ setup(
     install_requires=[
         'anybadge==1.1.1',
         'GitPython==2.1.10',
-        'CairoSVG==2.1.3',
+        'CairoSVG==2.5.1',
     ],
     include_package_data=True,
     zip_safe=False
